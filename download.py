@@ -1,5 +1,5 @@
 import requests
-import wget
+import wget 
 import gzip
 import shutil
 
