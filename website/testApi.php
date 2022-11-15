@@ -9,28 +9,28 @@
 </head>
 <body>
     <section>
-        <?php
-        require './ModelApi.php';
-
-        $url = 'http://localhost:5001';
-        $testApi = new ModelApi($url);
-        $myData = $testApi->get_data();
-        
-        echo "<div class='block'>" .
-                "<img src=" . $myData["poster"] . "/>" .
-            "<div>" .
-                "<h1>" .
-                $myData["title"]
-                . "</h1>" .
-                "<h3>" .
-                    $myData["year"]
-                . "</h3>" . 
-                "<p>" .
-                    $myData["description"]
-                . "</p>"
-            . "</div>"
-        . "</div>";
-        ?>
+        <h3>Films</h3>
+        <div class="wrap">
+            <?php
+                require_once './Function/Api.php';
+                $data_id = get_poster_by_id("tt0000001");
+                echo $data_id;
+                $data_name = get_poster_by_name("Titanic");
+                echo $data_name;
+            ?>
+        </div>
+    </section>
+    <section>
+        <h3>Series</h3>
+        <div class="wrap">
+            <?php
+                require_once './Function/Api.php';
+                $data_id2 = get_poster_by_id("tt0000020");
+                echo $data_id2;
+                $data_name2 = get_poster_by_name("Titanic");
+                echo $data_name2;
+            ?>
+        </div>
     </section>
 </body>
 </html>

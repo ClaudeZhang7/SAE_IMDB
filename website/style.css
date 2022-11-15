@@ -1,35 +1,100 @@
-html, body{
-    margin: 0;
-    padding: 0;
-    height: 100vh;
+html{
+    scroll-behavior: smooth;
+    background-color: #040714;
+    color: #f9F9F9;
+  }
+  
+  * {
     box-sizing: border-box;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  body{
+    font-family: Avenir-Roman, sans-serif;
+    padding: 2%;
+  }
+  
+  a {
+    color: #f9f9f9;
+    text-decoration: none;
+  }
+  
+  @media only screen and (min-width: 768px){
+    body{
+      font-size: 16px;
+    }
+  }
+  
+  @media only screen and (min-width: 480px ) and (max-width: 768px ) {
+    body{
+      font-size: 15px;
+    }
+  }
+  
+  
+  @media only screen and (max-width: 479px ) {
+    body{
+      font-size: 14px;
+    }
+  }
+
+.section{
+    margin: 10%;
+    width: 100%;
+    height: 100%;
+}  
+
+.wrap{
+    margin-top: 30px;
+    padding: 30px 0px 26px;
+    display: grid;
+    grid-gap: 25px;
+    gap: 25px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+
 }
 
-section{
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    height: 100vh;
+@media (max-width: 768px) {
+    .wrap{
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
 }
 
 .block{
-    display: block;
-    width: 400px;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, rgb(0 0 0 / 73%) 0px 16px 30px -10px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    width: 350px;
     height: 500px;
-    background-color: #3F4460;
-    color: aliceblue;
+    border: 3px solid rgba(249, 249, 249, 0.1);
+}
+
+.block:hover{
+    box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -16px, rgb(0 0 0 / 72%) 0px 30px 22px -10px;
+    transform: scale(1.05);
+    border-color: rgba(249, 249, 249, 0.8);
 }
 
 .block > img{
+    inset: 0px;
+    display: block;
+    height: 100%;
     width: 100%;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    transition: opacity 500ms ease-in-out;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
 }
 
-.block > div{
-    padding: 10px;
+.block > h3{
+    position: absolute;
     width: 100%;
-}
-
-.block > div > *{
-    width: 100%;
+    height: 50px;
+    text-align: center;
+    bottom: 0;
+    z-index: 10;
 }
