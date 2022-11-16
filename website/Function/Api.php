@@ -61,13 +61,29 @@
         $data = get_data_by_id($id);
         $data_id = (array) $data;
         $array = (array) $data_id["result"];
-        return "<div class=block><img src=" . $array["Poster"] . "/><h3>" . $array["Title"] . "</h3></div>";
+        echo "<div class='block'><div class='image' style='background-image:
+        linear-gradient(0deg, rgb(9, 16, 46) 10%, rgba(255,255,255,0) 30%),
+        url(" . $array["Poster"] . ")'></div><h3>" . $array["Title"] . "</h3></div>";
     }
 
     function get_poster_by_name($name){
         $data = get_data_by_name($name);
         $data_name = (array) $data;
         $array = (array) $data_name["result"][0];
-        return "<div class=block><img src=" . $array["Poster"] . "/></div>";
+        echo "<div class='block'><img src=" . $array["Poster"] . "/></div>";
+    }
+
+    function get_five_poster($id_debut){
+        for ($i=$id_debut; $i < $id_debut+5; $i++) { 
+            $id = "tt000000" . strval($i);
+            get_poster_by_id($id);
+        }
+    }
+
+    function get_many_poster($id_debut){
+        for ($i=$id_debut; $i < $id_debut+50; $i++) { 
+            $id = "tt000000" . strval($i);
+            get_poster_by_id($id);
+        }
     }
 ?>
