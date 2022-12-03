@@ -1,0 +1,17 @@
+
+Base de donnée 
+____________________________________________________________________________________
+
+Les personnes qui auront accès à la base de données seront : 
+les membres de l'équipe ainsi que les professeurs si ils demandent le mdp.
+
+Le script de connexion à la base de donnée à distance se trouvera dans le 
+dossier Script_Python (je le mettrais le dernier jour du rendu).
+
+
+Ordre du script 
+____________________________________________________________________________________
+
+L'ordre d'éxécution des scripts sont très importants (SQL)
+CreateTable -> Script Python (TableName4) -> Script Python (execute script copy) ->  
+Constraints_Keys -> DropConstraints (seulement lorsqu'un changement doit être fait)
