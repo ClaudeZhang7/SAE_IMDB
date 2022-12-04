@@ -1,9 +1,11 @@
 import pandas as pd
+import time 
 # PENSEZ à avoir les bons chemins (le github n'a pas les bons chemins(et c fait exprès)) !
 # Attention avec la fonction title_akas_or_crew()
+# Si vous voulez savoir le temps que prend une fonction on décommente les numéros 37
 
 def name_basics():
-
+    # 37 start = time.time()
     df = pd.read_csv('name_basics.tsv', sep="\t",encoding="utf-8",low_memory=False)
     i=0 # la colonne primaryProfession pense être de type float on la force à être de type str pour pouvoir utiliser le replace
     df["primaryProfession"]= df["primaryProfession"].astype(str) 
@@ -12,11 +14,15 @@ def name_basics():
         df.loc[i,'knownForTitles']=df.loc[i,'knownForTitles'].replace(df['knownForTitles'][i],'{'+df['knownForTitles'][i]+'}')
         i+=1
     df.to_csv('data_name_basics.tsv',encoding="utf-8", index=False) # écrit/crée sur le fichier data_name_basics.tsv
+    # 37 end = time.time()
+    # 37 temps = end - start
+    # 37 print("Le temps de la fonction name_basics est de : ",round(temps,2),"seconde")
     print("Fin du programme")
 
 
-def title_basics():
 
+def title_basics():
+    # 37 start = time.time()
     df = pd.read_csv('title_basics.tsv', sep="\t",encoding="utf-8", low_memory=False)
 
     i=0
@@ -29,12 +35,15 @@ def title_basics():
         i=i+1 # on utilise i pour donnée lindex à df.loc[]
         
     df.to_csv('data_title_basics.tsv',encoding="utf-8", index=False) 
+    # 37 end = time.time()
+    # 37 temps = end - start
+    # 37 print("Le temps de la fonction title_basics est de : ",round(temps,2),"seconde")
 
     print('Fin du programme')
 
 
 def title_akas_or_crew(fileName,colo1,colo2): # ne pas se tromper sur le nom du fichier et sur les colonnes de type array
-
+    # 37 start = time.time()
     if '.tsv' not in fileName:
         fileName = fileName+'.tsv'
     df = pd.read_csv(fileName, sep="\t", encoding="utf-8", low_memory=False)
@@ -44,6 +53,9 @@ def title_akas_or_crew(fileName,colo1,colo2): # ne pas se tromper sur le nom du 
         df.loc[i,colo2]=df.loc[i,colo2].replace(df[colo2][i],'{'+df[colo2][i]+'}')
         i+=1
     df.to_csv('data_'+fileName,encoding="utf-8", index=False) 
+    # 37 end = time.time()
+    # 37 temps = end - start
+    # 37 print("Le temps de la fonction title_akas_or_crew est de : ",round(temps,2),"seconde")
     print("Fin du programme")
 
 
