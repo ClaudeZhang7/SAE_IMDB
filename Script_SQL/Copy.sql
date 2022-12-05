@@ -15,3 +15,6 @@ COPY title_episode FROM 'C:\Program Files\PostgreSQL\13\scripts\title_episode.ts
 
 -- table title_ratings:
 COPY title_ratings FROM 'C:\Program Files\PostgreSQL\13\scripts\title_ratings.tsv' csv DELIMITER E'\t' header  ;
+
+-- table title_principals:
+COPY title_principals FROM 'C:\Program Files\PostgreSQL\13\scripts\title_principals.tsv' csv DELIMITER E'\t' header  ;
