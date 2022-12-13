@@ -42,17 +42,13 @@ ALTER TABLE title_principals
 ADD CONSTRAINT Principals_tconst_fkey FOREIGN KEY (tconst,ordering) REFERENCES title_akas(tconst,ordering)
 NOT VALID;
 
--- enlever la contrainte d'en haut et enlever les commentaires d'en bas si besoin
-
 -- ALTER TABLE title_principals
 -- ADD CONSTRAINT Principals_nconst_fkey FOREIGN KEY (nconst) REFERENCES name_basics(nconst)
 -- NOT VALID;
 
--- ALTER TABLE title_principals 
--- ADD CONSTRAINT Principals_tconst_fkey FOREIGN KEY (tconst) References title_basics(tconst)
--- NOT VALID ;
-
-
+-- ALTER TABLE title_principals
+-- ADD CONSTRAINT Principals_tconst_fkey FOREIGN KEY (tconst) REFERENCES title_basics(tconst)
+-- NOT VALID;
 
 
 
