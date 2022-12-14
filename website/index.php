@@ -8,28 +8,29 @@
     <title>test du block amazon prime</title>
 </head>
 <body>
+    <?php require_once "./components/header.php" ?>
     <section>
         <h3>Films</h3>
         <div class="wrap">
             <?php
-                require_once './Function/Api.php';
-                get_five_poster(1);
+                // require_once './Function/Api.php';
+                // get_five_poster(1);
             ?>
     </section>
     <section>
         <h3>Series</h3>
         <div class="wrap">
             <?php
-                require_once './Function/Api.php';
-                get_five_poster(6);
+                // require_once './Function/Api.php';
+                // get_five_poster(6);
             ?>
     </section>
     <section>
         <h3>Documentaires</h3>
         <div class="wrap">
             <?php
-                require_once './Function/Api.php';
-                get_five_poster(11);
+                // require_once './Function/Api.php';
+                // get_five_poster(11);
             ?>
     </section>
 </body>

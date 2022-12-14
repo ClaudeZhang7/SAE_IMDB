@@ -34,6 +34,67 @@ html, body{
     }
   }
 
+  header{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 70px;
+    background-color: #090b13;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 36px;
+    letter-spacing: 5px;
+    z-index: 3;
+  }
+
+  .Logo{
+    padding: 0;
+    width: 80px;
+    max-height: 70px;
+    font-size: 0;
+    color: white;
+    display: inline-block;
+  }
+
+  nav{
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    height: 100%;
+    justify-content: flex-end;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    margin-right: auto;
+    margin-left: 25px;
+}
+
+nav > a{
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  margin: 0px 10px;
+}
+
+nav > img{
+  height: 20px;
+  min-width: 20px;
+  width: 20px;
+  z-index: auto;
+}
+
+nav > span{
+  color: rgb(249, 249, 249);
+  font-size: 13px;
+  letter-spacing: 1px;
+  line-height: 1.08;
+  padding: 2px 5px;
+  white-space: nowrap;
+  position: relative;
+}
+
 .section{
     margin: 10%;
     width: 100%;
@@ -73,12 +134,14 @@ html, body{
     height: 50%;
     z-index: 10;
     opacity: 1;
+    transition: 1s all;
     border: 3px solid rgba(249, 249, 249, 0.1);
 }
 
 .block:hover{
     box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -16px, rgb(0 0 0 / 72%) 0px 30px 22px -10px;
     transform: scale(1.05);
+    transition: 1s all;
     border-color: rgba(249, 249, 249, 0.8);
 }
 
@@ -103,7 +166,8 @@ html, body{
     position: absolute;
     z-index: 10;
     padding: 0 5%;
-    bottom: 0;
+    bottom: -10px;
     text-align: center;
     width: 100%;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }

@@ -62,7 +62,7 @@
         $data_id = (array) $data;
         $array = (array) $data_id["result"];
         echo "<div class='block'><div class='image' style='background-image:
-        linear-gradient(0deg, rgb(9, 16, 46) 10%, rgba(255,255,255,0) 30%),
+        linear-gradient(0deg, black 0%, rgba(0,0,0,0) 50%),
         url(" . $array["Poster"] . ")'></div><h3>" . $array["Title"] . "</h3></div>";
     }
 
