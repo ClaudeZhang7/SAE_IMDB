@@ -25,8 +25,8 @@ try:
         next(f) # on skip les lignes headers
         cur.copy_from(f,'title_principals',sep='\t')  #on le copy à la table correspondante
         
+    cur.execute(open("Str_To_Array.sql", "r").read())
     cur.execute(open("Constraints.sql", "r").read())
-
     cur.execute(open("DeleteFrom.sql", "r").read())
     cur.execute(open("ValidateConstraints.sql", "r").read())
     conn.commit()  

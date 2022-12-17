@@ -67,4 +67,4 @@ title_basics()
 title_akas_or_crew('title_akas','types','attributes')   # correspond aux données de la table title_akas
 title_akas_or_crew('title_crew','directors','writers')  # correspond aux données de la table title_crew
 
-print('Script de conversion terminé Bravo !')           # je pense que y'en a pour en tout 5-8h facile
+print('Script de conversion terminé Bravo !')           # je pense que y'en a pour en tout 8-10h facile
