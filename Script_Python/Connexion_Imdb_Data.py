@@ -1,10 +1,10 @@
 import psycopg2 
 
-hostname = '' # accepte la connexion à distance 
+hostname = 'localhost' # accepte la connexion à distance 
 database ='postgres'
-username='Claude'
-pwd ='mdpADemander' # demander le mot de passe à Claude
-port_id=0000        # demander le port à Claude
+username='saeroot'
+pwd ='root' # demander le mot de passe à Claude
+port_id=5432        # demander le port à Claude
 conn = None
 cur = None
 try:
