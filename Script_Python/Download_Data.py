@@ -2,6 +2,7 @@ import requests
 import wget 
 import gzip
 import shutil
+import pandas as pd # règle le pb de data missing for column
 
 link = input("Quelle est le lien pour télécharger les fichier ?\n")
 html = requests.get(link).text
@@ -44,3 +45,7 @@ while y<count :
 
 	start += 28
 	y+=1
+
+df = pd.read_csv('title.basics.tsv', delimiter='\t')
+df = df.dropna(subset=['genres'])
+df.to_csv('title.basics.tsv', sep='\t', index=False) # chemin à mettre poto 
