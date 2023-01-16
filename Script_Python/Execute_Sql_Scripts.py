@@ -18,17 +18,21 @@ try:
         port = port_id)
     
     cur = conn.cursor()
-    cur.execute(open("DropConstraints.sql", "r").read())
-    cur.execute(open("CreateTable.sql", "r").read())
-    cur.execute(open("Copy.sql", "r").read())
+    print(1)
+    #cur.execute(open("../Script_SQL/DropConstraints.sql", "r").read())
+    print(2)
+    cur.execute(open("../Script_SQL/CreateTable.sql", "r").read())
+    print(3)
+    cur.execute(open("../Script_SQL/Copy.sql", "r").read())
+    print(4)
     with open('title_principals.tsv','r',encoding='utf-8')as f: # on ouvre le fichier 
         next(f) # on skip les lignes headers
         cur.copy_from(f,'title_principals',sep='\t')  #on le copy à la table correspondante
         
     cur.execute(open("Str_To_Array.sql", "r").read())
     cur.execute(open("Constraints.sql", "r").read())
-    cur.execute(open("DeleteFrom.sql", "r").read())
-    cur.execute(open("ValidateConstraints.sql", "r").read())
+    # cur.execute(open("DeleteFrom.sql", "r").read())
+    # cur.execute(open("ValidateConstraints.sql", "r").read())
     conn.commit()  
 
     

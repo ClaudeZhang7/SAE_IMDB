@@ -6,7 +6,7 @@ import time
 
 def name_basics():
     # 37 start = time.time()
-    df = pd.read_csv('name_basics.tsv', sep="\t",encoding="utf-8",low_memory=False)
+    df = pd.read_csv('/home/ubuntu/imdb_file/download/name.basics.tsv', sep="\t",encoding="utf-8",low_memory=False)
     i=0 # la colonne primaryProfession pense être de type float on la force à être de type str pour pouvoir utiliser le replace
     df["primaryProfession"]= df["primaryProfession"].astype(str) 
     while i < len(df['primaryProfession']): 
@@ -23,7 +23,7 @@ def name_basics():
 
 def title_basics():
     # 37 start = time.time()
-    df = pd.read_csv('title_basics.tsv', sep="\t",encoding="utf-8", low_memory=False)
+    df = pd.read_csv('/home/ubuntu/imdb_file/download/title.basics.tsv', sep="\t",encoding="utf-8", low_memory=False)
 
     i=0
     df["genres"] = df["genres"].astype(str)
@@ -62,9 +62,9 @@ def title_akas_or_crew(fileName,colo1,colo2): # ne pas se tromper sur le nom du 
 
 
 # vous pouvez mettre le .tsv à la fin des noms des fichiers si vous voulez
-name_basics()
+# name_basics()
 title_basics()
-title_akas_or_crew('title_akas','types','attributes')   # correspond aux données de la table title_akas
-title_akas_or_crew('title_crew','directors','writers')  # correspond aux données de la table title_crew
+# title_akas_or_crew('title_akas','types','attributes')   # correspond aux données de la table title_akas
+# title_akas_or_crew('title_crew','directors','writers')  # correspond aux données de la table title_crew
 
 print('Script de conversion terminé Bravo !')           # je pense que y'en a pour en tout 8-10h facile
