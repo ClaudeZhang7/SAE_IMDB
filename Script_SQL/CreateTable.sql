@@ -15,7 +15,7 @@ create table title_basics(
     startYear int, -- peut-etre remplacer par integer NULL
     endYear int,   -- Idem
     runtimeMinutes int,
-    genres text[] 
+    genres text 
 );
 
 create table title_ratings(
@@ -30,8 +30,8 @@ create table title_akas(
     title text, 
     region text, 
     language text, 
-    types text[], 
-    attributes text[],
+    types text, 
+    attributes text,
     isOriginalTitle boolean 
 );
 
@@ -48,14 +48,14 @@ create table name_basics(
     primaryName text , 
     birthYear int,   -- Idem 
     deathYear int,   -- Idem
-    primaryProfession text[],
-    knownForTitles text[]
+    primaryProfession text,
+    knownForTitles text
 );
 
 create table title_crew(
     tconst text NOT NULL,
-    directors text[],
-    writers text[]
+    directors text,
+    writers text
 
 );
 

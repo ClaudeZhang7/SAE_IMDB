@@ -25,12 +25,13 @@ try:
     print(3)
     cur.execute(open("../Script_SQL/Copy.sql", "r").read())
     print(4)
-    with open('title_principals.tsv','r',encoding='utf-8')as f: # on ouvre le fichier 
+    with open('/usr/lib/postgresql/14/scripts/title.principals.tsv','r',encoding='utf-8')as f: # on ouvre le fichier 
         next(f) # on skip les lignes headers
-        cur.copy_from(f,'title_principals',sep='\t')  #on le copy à la table correspondante
+        cur.copy_from(f,'title_principals',sep='\t')  # on le copy à la table correspondante
         
-    cur.execute(open("Str_To_Array.sql", "r").read())
-    cur.execute(open("Constraints.sql", "r").read())
+    cur.execute(open("../Script_SQL/Str_To_Array.sql", "r").read())
+    print("5")
+    cur.execute(open("../Script_SQL/Constraints.sql", "r").read())
     # cur.execute(open("DeleteFrom.sql", "r").read())
     # cur.execute(open("ValidateConstraints.sql", "r").read())
     conn.commit()  
