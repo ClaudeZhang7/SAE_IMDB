@@ -3,7 +3,7 @@
     function get_data_by_id($id){
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.collectapi.com/imdb/imdbSearchById?movieId=" . $id,
+            CURLOPT_URL => "http://www.omdbapi.com/?apikey=12315667&i=" . $id,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -11,7 +11,6 @@
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-              "authorization: apikey 4r7cpq8EdbmpTqzIj42zow:4KXN6vJuH9AQbv2JvnEUI1",
               "content-type: application/json"
             ),
         ));

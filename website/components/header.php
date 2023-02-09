@@ -1,25 +1,21 @@
-<!-- create navbar with logo, search bar, and links with dropdowns -->
-<nav class="navbar navbar-expand-lg navbar-dark px-3">
-  <a class="navbar-brand" href="index.php">
-    <img src="/website/Assets/ApnaTV.png" alt="logo" width="120" height="30" class="d-inline-block align-top">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item px-2">
-        <a class="nav-link text-white" href="index.php">Tous les Films</a>
-      </li>
-      <li class="nav-item px-2">
-        <a class="nav-link text-white" href="index.php">Rapprochement de Film</a>
-      </li>
-      <li class="nav-item px-2">
-        <a class="nav-link text-white" href="index.php">Films / acteurs communs</a>
-      </li>
-    </ul>
-</div>
-<form class="d-flex">
-  <button class="btn btn-outline-light" type="submit">Recherche</button>
-</form>
-</nav>
+<header class="p-3 text-bg-dark">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <img src="/website/Assets/ApnaTV.png" alt="logo" width="120" height="30" class="d-inline-block align-top me-2">
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+        </ul>
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+        </form>
+      </div>
+    </div>
+  </header>
