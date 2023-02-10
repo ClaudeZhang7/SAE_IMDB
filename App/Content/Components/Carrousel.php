@@ -70,7 +70,7 @@
         font-size: 15px;
         font-weight: 500;
         text-transform: capitalize;
-        margin-top: 60%;
+        margin-top: 50%;
     }
 
     .des {
@@ -163,7 +163,7 @@
                         <?php echo $val['primarytitle'] ?>
                     </h2>
                     <h6 class="des" style="height: 50px; overflow: hidden;">
-                        Description
+                        Description :
                         <?php echo $val['Plot'] ?>
                     </h6>
                     <button class="watchlist-btn">Voir</button>

@@ -13,6 +13,7 @@ $genre = explode(",", $genre);
     ); background-size: cover; background-repeat: no-repeat; background-position: top; width: 100%;"
     ?> ">
     <div class="d-flex align-items-start justify-content-start" style="width: 100%;">
+
         <div class="row mx-5" style="margin-top: 150px;">
             <div class="text-white">
                 <h1 class="display-3 text-uppercase fw-bold" id="titre">
@@ -28,7 +29,9 @@ $genre = explode(",", $genre);
                         <button type="button" class="btn btn-outline-light btn-sm"><?php echo $g; ?></button>
                     <?php endforeach; ?>
                 </p>
-                <a href="index.php?controller=movie&action=show&id=1" class="btn btn-outline-light mt-3">Voir le film</a>
+                <a href=<?php
+                    echo "index.php?controller=OneMovie&id=" . $first['tconst'];
+                 ?> class="btn btn-outline-light mt-3">Voir le film</a>
             </div>
         </div>
     </div>
@@ -41,8 +44,8 @@ $genre = explode(",", $genre);
   backdrop-filter: blur(10px);">
                     <div class="d-flex align-items-center justify-content-center" style="width: 100%; height: 100%;">
                         <?php
-                        require_once 'Content/Components/Carrousel.php';
-                        $dataFilm = $data
+                        // require_once 'Content/Components/Carrousel.php';
+                        // $dataFilm = $data
                         ?>
                     </div>
                 </div>
