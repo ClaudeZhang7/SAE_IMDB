@@ -94,7 +94,7 @@ require_once 'view_begin.php';
                         <?php echo $val['primarytitle'] ?>
                     </h2>
                     <h6 class="des" style="height: 50px; overflow: hidden;">
-                        Description : <br>
+                        Description : <br><br>
                         <?php echo $val['Plot'] ?>
                     </h6>
                     <button class="watchlist-btn">Voir</button>

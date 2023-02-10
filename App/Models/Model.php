@@ -58,4 +58,51 @@ class Model
 
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    // get one movie the data from the table title_basics with characters and directors
+    public function getOneMovie($id)
+    {
+        $sql = "SELECT * FROM title_basics WHERE tconst = :id";
+        $req = $this->bd->prepare($sql);
+        $req->execute(array(
+            "id" => $id
+        ));
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+
+        $sql = "SELECT primaryname FROM title_principals INNER JOIN name_basics ON title_principals.nconst = name_basics.nconst WHERE tconst = :id and category = 'actor'";
+        $req = $this->bd->prepare($sql);
+        $req->execute(array(
+            "id" => $id
+        ));
+
+        $data[0]["characters"] = $req->fetchAll(PDO::FETCH_ASSOC);
+
+        $sql = "SELECT * FROM title_crew WHERE tconst = :id";
+        $req = $this->bd->prepare($sql);
+        $req->execute(array(
+            "id" => $id
+        ));
+
+        $data[0]["directors"] = $req->fetchAll(PDO::FETCH_ASSOC);
+
+        // get the directors names from the table name_basics with the nconst
+        $data[0]["directors"] = array_map(function ($item) {
+            $directors = $item["directors"];
+            $directors = explode(",", str_replace(["{", "}"], "", $directors));
+
+            $directors = array_map(function ($item) {
+                $sql = "SELECT primaryname FROM name_basics WHERE nconst = :id";
+                $req = $this->bd->prepare($sql);
+                $req->execute(array(
+                    "id" => $item
+                ));
+
+                return $req->fetch(PDO::FETCH_ASSOC);
+            }, $directors);
+            return $directors;
+        }, $data[0]["directors"]);
+
+        return $data;
+    }
 }
