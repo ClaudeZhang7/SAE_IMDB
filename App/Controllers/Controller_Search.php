@@ -1,11 +1,22 @@
 <?php
-
-class Controller_Home extends Controller
+class Controller_Search extends Controller
 {
     public function action_default()
     {
+        if (isset($_GET['name'], $_GET['date'], $_GET['genre'])) {
+            $name = $_GET['name'];
+            $date = $_GET['date'];
+            $genre = $_GET['genre'];
+        } else {
+            $name = "";
+            $date = "";
+            $genre = "";
+        }
+
         $model = Model::getModel();
-        $data = $model->getLastMovies();
+        $data = $model->getSearch($name, $date, $genre);
+        $genreAll = $model->getGenres();
+        $dateAll = $model->getYears();
 
         $api = Api::getApi();
         $dataApi = $api->getApi();
@@ -37,7 +48,11 @@ class Controller_Home extends Controller
             return $item;
         }, $data);
 
-        // render the view with the data and api
-        $this->render("Home", $data);
+        return $this->render("search", [
+            "data" => $data,
+            "name" => $name,
+            "dates" => $dateAll,
+            "genres" => $genreAll
+        ]);
     }
 }

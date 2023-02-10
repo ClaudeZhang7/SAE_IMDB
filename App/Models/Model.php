@@ -42,7 +42,7 @@ class Model
     // get 10 last movies the data from the table title_basics
     public function getLastMovies()
     {
-        $sql = "SELECT * FROM title_basics limit 10";
+        $sql = "SELECT * FROM title_basics ORDER BY tconst limit 10";
         $req = $this->bd->prepare($sql);
         $req->execute();
 
@@ -52,7 +52,7 @@ class Model
     // get all movies the data from the table title_basics
     public function getAllMovies()
     {
-        $sql = "SELECT * FROM title_basics limit 32";
+        $sql = "SELECT * FROM title_basics ORDER BY tconst limit 30";
         $req = $this->bd->prepare($sql);
         $req->execute();
 
@@ -102,6 +102,77 @@ class Model
             }, $directors);
             return $directors;
         }, $data[0]["directors"]);
+
+        return $data;
+    }
+
+    public function getSearch($name = "", $date = "", $genre = "")
+    {
+
+        if (empty($name) && empty($date) && empty($genre)) {
+            $sql = "SELECT * FROM title_basics limit 30";
+            $req = $this->bd->prepare($sql);
+            $req->execute();
+
+            return $req->fetchAll(PDO::FETCH_ASSOC);
+        } 
+
+        
+
+        $sql = "SELECT * FROM title_basics WHERE primarytitle LIKE :name AND startyear >= :date limit 30 AND genres = :genre";
+        $req = $this->bd->prepare($sql);
+        $req->execute(array(
+            "name" => "%$name%",
+            "date" => $date,
+            "genre" => $genre
+        ));
+
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // get all genres plucked from the table title_basics
+    public function getGenres()
+    {
+        $sql = "SELECT genres FROM title_basics limit 50";
+        $req = $this->bd->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+
+        $data = array_map(function ($item) {
+            $genres = $item["genres"];
+
+            if (empty($genres)) {
+                return [];
+            }
+
+            $genres = explode(",", str_replace(["{", "}"], "", $genres));
+            return $genres;
+        }, $data);
+
+        $data = array_reduce($data, function ($carry, $item) {
+            return array_merge($carry, $item);
+        }, []);
+
+        $data = array_unique($data);
+
+        return $data;
+    }
+
+    // get all years plucked from the table title_basics
+    public function getYears()
+    {
+        $sql = "SELECT DISTINCT startyear FROM title_basics ORDER BY startyear DESC";
+        $req = $this->bd->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+
+        $data = array_map(function ($item) {
+            if (!empty($item["startyear"])) {
+                return $item["startyear"];
+            }
+        }, $data);
 
         return $data;
     }

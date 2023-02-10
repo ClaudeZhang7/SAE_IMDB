@@ -11,7 +11,7 @@ require_once "Controllers/Controller.php";
 
 try {
     //Liste des contrôleurs -- A RENSEIGNER
-$controllers = ["Home", "AllMovies", "OneMovie"];
+$controllers = ["Home", "AllMovies", "OneMovie", "Search"];
 //Nom du contrôleur par défaut-- A RENSEIGNER
 $controller_default = "Home";
 

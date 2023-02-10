@@ -6,6 +6,8 @@ $genre = str_replace(["{", "}"], '', $genre);
 $genre = explode(",", $genre);
 ?>
 
+<title>Artive.com | Page d'accueil</title>
+
 <div class="container-fluid vh-100 p-0 m-0" style="
     <?php
     echo "background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url(
@@ -23,15 +25,20 @@ $genre = explode(",", $genre);
                 <p class="fw-bold" id="description" style="width: 50%;">
                     <?php echo $first["Plot"]; ?>
                 </p>
-                <h5 class="text-uppercase fw-bold mt-3" id="description">Genre du film :</h5>
-                <p class="fw-bold" id="description" style="width: 50%;">
-                    <?php foreach ($genre as $g): ?>
-                        <button type="button" class="btn btn-outline-light btn-sm"><?php echo $g; ?></button>
-                    <?php endforeach; ?>
-                </p>
-                <a href=<?php
-                    echo "index.php?controller=OneMovie&id=" . $first['tconst'];
-                 ?> class="btn btn-outline-light mt-3">Voir le film</a>
+                <div class="my-5">
+
+                    <h5 class="text-uppercase fw-bold mt-3" id="description">Genre du film :</h5>
+                    <p class="fw-bold" id="description" style="width: 50%;">
+                        <?php foreach ($genre as $g) : ?>
+                            <button type="button" class="btn btn-outline-light btn-sm"><?php echo $g; ?></button>
+                        <?php endforeach; ?>
+                    </p>
+                    <a href=<?php
+                            echo "index.php?controller=OneMovie&id=" . $first['tconst'];
+                            ?> class="btn btn-outline-light mt-3">
+                        Voir le film
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -44,8 +51,8 @@ $genre = explode(",", $genre);
   backdrop-filter: blur(10px);">
                     <div class="d-flex align-items-center justify-content-center" style="width: 100%; height: 100%;">
                         <?php
-                        // require_once 'Content/Components/Carrousel.php';
-                        // $dataFilm = $data
+                        require_once 'Content/Components/Carrousel.php';
+                        $dataFilm = $data
                         ?>
                     </div>
                 </div>
