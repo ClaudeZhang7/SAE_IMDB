@@ -3,9 +3,9 @@ require_once 'view_begin.php';
 ?>
 
 <style>
-    .card{
-        width: 300px;
-        height: 400px;
+    .card {
+        width: 200px;
+        height: 300px;
         transition: .5s;
     }
 
@@ -45,7 +45,7 @@ require_once 'view_begin.php';
         font-size: 15px;
         font-weight: 500;
         text-transform: capitalize;
-        margin-top: 80%;
+        margin-top: 40%;
     }
 
     .des {
@@ -78,26 +78,29 @@ require_once 'view_begin.php';
     }
 </style>
 
+<title>Films | Artive</title>
+
 <div class="container-fluid vh-100 v-100 p-0 m-0 d-flex flex-column align-items-center justify-content-start" style="background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%)">
     <div style="margin-top: 150px;">
         <h1 class="text-white">Tous les films</h1>
     </div>
     <div class="d-flex flex-row flex-wrap justify-content-center align-items-center" style="margin-top: 50px;">
-        <?php foreach ($data as $val): ?>
+        <?php foreach ($data as $val) : ?>
             <div class="card m-3">
                 <img src=<?php
-                    echo $val['Poster']
-                ?>
-                 class="card-img" alt="">
+                            echo $val['Poster']
+                            ?> class="card-img" alt="">
                 <div class="card-body">
                     <h2 class="name">
                         <?php echo $val['primarytitle'] ?>
                     </h2>
-                    <h6 class="des" style="height: 50px; overflow: hidden;">
+                    <h6 class="des" style="height: 95px; overflow: hidden;">
                         Description : <br><br>
                         <?php echo $val['Plot'] ?>
                     </h6>
-                    <button class="watchlist-btn">Voir</button>
+                    <button class="watchlist-btn" onclick="window.location.href = 'index.php?controller=OneMovie&id=<?php echo $val['tconst'] ?>'">
+                        Voir
+                    </button>
                 </div>
             </div>
         <?php endforeach; ?>
