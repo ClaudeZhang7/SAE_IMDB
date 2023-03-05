@@ -1,5 +1,4 @@
 -- table title_basics : 
-<<<<<<< HEAD
 COPY title_basics FROM '/usr/lib/postgresql/14/scripts/title.basics.tsv' csv DELIMITER E'\t' null '\N' header 
 where startyear >0 or startyear is null and endyear > startyear or endyear is null and runtimeminutes >0 or runtimeminutes is null ;
 
@@ -12,7 +11,6 @@ COPY title_crew FROM '/usr/lib/postgresql/14/scripts/title.crew.tsv' csv DELIMIT
 
 -- table title_akas :
 COPY title_akas FROM '/usr/lib/postgresql/14/scripts/title.akas.tsv' csv DELIMITER E'\t' null '\N' header
-=======
 COPY title_basics FROM 'C:\Program Files\PostgreSQL\13\scripts\data_title_basics.tsv' csv DELIMITER E'\t' null '\N' header 
 where startyear >0 or startyear is null and endyear > startyear or endyear is null and runtimeminutes >0 or runtimeminutes is null ;
 
@@ -25,7 +23,6 @@ COPY title_crew FROM 'C:\Program Files\PostgreSQL\13\scripts\data_title_crew.tsv
 
 -- table title_akas :
 COPY title_akas FROM 'C:\Program Files\PostgreSQL\13\scripts\data_title_akas.tsv' csv DELIMITER E'\t' null '\N' header
->>>>>>> 94f8a1127604350efa5ff819481f94998caf979d
 where isoriginaltitle =true or isoriginaltitle =false  ;
 
 -- table title_episode :
