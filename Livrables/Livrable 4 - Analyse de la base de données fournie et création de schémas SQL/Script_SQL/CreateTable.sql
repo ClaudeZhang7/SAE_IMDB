@@ -12,10 +12,10 @@ create table title_basics(
     primaryTitle text,
     originalTitle text,
     isAdult boolean ,
-    startYear text, -- peut-etre remplacer par integer NULL
-    endYear text,   -- Idem
-    runtimeMinutes text,
-    genres text[] 
+    startYear int, -- peut-etre remplacer par integer NULL
+    endYear int,   -- Idem
+    runtimeMinutes int,
+    genres text 
 );
 
 create table title_ratings(
@@ -30,32 +30,32 @@ create table title_akas(
     title text, 
     region text, 
     language text, 
-    types text[], 
-    attributes text[],
-    isOriginalTitle text 
+    types text, 
+    attributes text,
+    isOriginalTitle boolean 
 );
 
 create table title_episode(
     tconst text  NOT NULL,
     parentTconst text NOT NULL, 
-    seasonNumber text, -- peu-etre changer par integer NULL
-    episodeNumber text -- Idem
+    seasonNumber int, -- peu-etre changer par integer NULL
+    episodeNumber int -- Idem
 );
 
 
 create table name_basics(
     nconst text NOT NULL, 
     primaryName text , 
-    birthYear text,   -- Idem 
-    deathYear text,   -- Idem
-    primaryProfession text[],
-    knownForTitles text[]
+    birthYear int,   -- Idem 
+    deathYear int,   -- Idem
+    primaryProfession text,
+    knownForTitles text
 );
 
 create table title_crew(
     tconst text NOT NULL,
-    directors text[],
-    writers text[]
+    directors text,
+    writers text
 
 );
 
