@@ -32,8 +32,8 @@ try:
     cur.execute(open("../Script_SQL/Str_To_Array.sql", "r").read())
     print("5")
     cur.execute(open("../Script_SQL/Constraints.sql", "r").read())
-    # cur.execute(open("DeleteFrom.sql", "r").read())
-    # cur.execute(open("ValidateConstraints.sql", "r").read())
+    cur.execute(open("../Script_SQL/DeleteFrom.sql", "r").read())
+    cur.execute(open("../Script_SQL/ValidateConstraints.sql", "r").read())
     conn.commit()  
 
     
