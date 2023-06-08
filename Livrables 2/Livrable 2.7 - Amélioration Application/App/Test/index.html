@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First Web Page</title>
+</head>
+<body>
+
+
+
+    <div>
+        <!--<input id="recherche" type="text" value ="test" name="recherche"> -->
+        <!-- <p class="underRecherche">My first paragraph.</p> -->
+
+        <div>
+            <label for="comparaison">Comparaison</label>
+            <input class="comparaison" type="text" name="acteur">
+            <input class="comparaison" type="text" name="acteur">
+
+        </div>
+
+        <div id="overRecherche">
+            <label for="recherche">Recherche</label>
+            <input id="recherche" type="text">
+            <p id="underRecherche"></p>
+        </div>
+        <label for="category">Category</label>
+        <input id="category" type="text">
+        <div id="resultatComparaison"></div>
+        <div id="resultatRecherche"></div>
+        <input type="submit" id="lanceComparaison" value="comparer">
+        <input type="submit" id="lanceRecherche" value="recherche">
+    </div>
+    
+    <!-- <div>
+        acteur1
+        <input type="text" class="comparaison" name="acteur" >
+        acteur2
+        <input type="text" class="comparaison" name="acteur">
+    </div> -->
+<!--
+    <div>
+        film1
+        <input type="text" class="comparaison" name="film">
+        film2
+        <input type="text" class="comparaison" name="film">
+    </div>
+-->
+    <!-- <p id="resultatComparaison">
+        resultat compa
+    </p> -->
+    <!-- <input type="button" id="lanceComparaison" value="comparer"> -->
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    /*function ajaxRequest(url) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                document.getElementById("resultatRecherche").innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send();
+    }*/
+</script>
+<script src="./algos.js"></script>
+</html>

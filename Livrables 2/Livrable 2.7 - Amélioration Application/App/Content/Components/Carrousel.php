@@ -206,6 +206,7 @@
         opacity: 1;
     }
 </style>
+
 <body>
     <div class="movies-list">
         <button class="pre-btn text-black">

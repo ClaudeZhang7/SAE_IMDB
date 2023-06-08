@@ -48,16 +48,13 @@ $genre = explode(",", $genre);
                     <?php echo $first['primarytitle']; ?>
                 </h1>
                 <h5 class="text-uppercase fw-bold mt-3" id="description">Description du film :</h5>
-
                 <p class="fw-bold description-width" id="description">
                     <?php echo $first["Plot"]; ?>
                 </p>
                 <div class="my-5">
 
                     <h5 class="text-uppercase fw-bold mt-3" id="description">Genre du film :</h5>
-
                     <p class="fw-bold description-width" id="description">
-
                         <?php foreach ($genre as $g) : ?>
                             <button type="button" class="btn btn-outline-light btn-sm"><?php echo $g; ?></button>
                         <?php endforeach; ?>
