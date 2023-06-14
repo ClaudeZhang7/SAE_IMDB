@@ -6,12 +6,14 @@ require_once "Utils/functions.php";
 require_once "Models/Model.php";
 //Inclusion de la classe Api
 require_once "Models/Api.php";
+//Inclusion de la classe Algo
+require_once "Models/Algo.php";
 //Inclusion de la classe Controller
 require_once "Controllers/Controller.php";
 
 try {
     //Liste des contrôleurs -- A RENSEIGNER
-$controllers = ["Home", "AllMovies", "OneMovie", "Search", "Rapprochement_de_Film", "Films_acteurs_communs", "Connexion"];
+$controllers = ["Home", "AllMovies", "OneMovie", "Search", "Rapprochement_de_Film", "Films_acteurs_communs", "Connexion", "Profil", "Note"];
 // Nom du contrôleur par défaut-- A RENSEIGNER
 $controller_default = "Home";
 

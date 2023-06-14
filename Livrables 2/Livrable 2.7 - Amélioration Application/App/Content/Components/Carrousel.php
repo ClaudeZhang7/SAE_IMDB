@@ -4,6 +4,8 @@
         /* Extra small devices (portrait phones, less than 576px) */
         .card {
             min-width: 150px;
+            margin-right: 10px;
+            /* adjust as needed */
         }
 
         .name {
@@ -226,7 +228,7 @@
                                 </h2>
                                 <h6 class="des" style="height: 50px; overflow: hidden;">
                                     Description :
-                                    <?php echo $val['Plot'] ?>
+                                    <?php echo substr($val['Plot'], 0, 50) . "..." ?>
                                 </h6>
                                 <button class="watchlist-btn" onclick="window.location.href = 'index.php?controller=OneMovie&id=<?php echo $val['tconst'] ?>'">
                                     Voir

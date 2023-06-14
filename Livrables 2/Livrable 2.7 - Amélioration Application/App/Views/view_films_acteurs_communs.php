@@ -3,7 +3,7 @@
 
 ?>
 
-<title>Artive.com | Films acteurs communs</title>
+<title>ApnaTV.com | Films acteurs communs</title>
 
 <div class="container d-flex flex-column align-items-center justify-content-center v-100 vh-100 text-white text-center mx-5">
     <h1 class="mb-5">Selectionner deux films</h1>

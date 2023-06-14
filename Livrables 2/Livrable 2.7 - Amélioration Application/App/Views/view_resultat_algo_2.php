@@ -1,6 +1,6 @@
 <?php require "view_begin.php"; ?>
 
-<title>Artive.com | Resultat de films, acteurs en commun</title>
+<title>ApnaTV.com | Resultat de films, acteurs en commun</title>
 
 <div class="container d-flex flex-column align-items-center justify-content-center v-100 text-white text-center mx-5" style="margin-top: 60px;">
     <h3>Resultat :</h3>

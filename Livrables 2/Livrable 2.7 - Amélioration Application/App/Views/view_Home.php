@@ -6,7 +6,7 @@ $genre = str_replace(["{", "}"], '', $genre);
 $genre = explode(",", $genre);
 ?>
 
-<title>Artive.com | Page d'accueil</title>
+<title>ApnaTV.com | Page d'accueil</title>
 
 <style>
     @media only screen and (max-width: 600px) {
@@ -34,10 +34,42 @@ $genre = explode(",", $genre);
     }
 </style>
 
+<style>
+    @media only screen and (max-width: 600px) {
+        /* styles pour les écrans de moins de 600px (téléphones) */
+        .description-width {
+            width: 100%;
+        }
+        #titre {
+            font-size: 1.5em; /* adjust as needed */
+        }
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 1200px) {
+        /* styles pour les écrans entre 600px et 1200px (tablettes) */
+        .description-width {
+            width: 75%;
+        }
+        #titre {
+            font-size: 2em; /* adjust as needed */
+        }
+    }
+
+    @media only screen and (min-width: 1200px) {
+        /* styles pour les écrans de plus de 1200px (ordinateurs de bureau, télévisions) */
+        .description-width {
+            width: 50%;
+        }
+        #titre {
+            font-size: 2.5em; /* adjust as needed */
+        }
+    }
+</style>
+
+
 <div class="container-fluid vh-100 p-0 m-0" style="
     <?php
-    echo "background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url(
-    " . $first['Poster'] . "
+    echo "background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url('https://lumiere-a.akamaihd.net/v1/images/image_24641330.jpeg?region=0,101,2160,1215&width=2048'
     ); background-size: cover; background-repeat: no-repeat; background-position: top; width: 100%;"
     ?> ">
     <div class="d-flex align-items-start justify-content-start" style="width: 100%;">

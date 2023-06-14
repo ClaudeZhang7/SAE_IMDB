@@ -1,6 +1,6 @@
 <?php require "view_begin.php"; ?>
 
-<title>Artive.com | Resultat du rapprochement</title>
+<title>ApnaTV.com | Resultat du rapprochement</title>
 
 <div class="container d-flex flex-column align-items-center justify-content-center v-100 vh-100 text-white text-center mx-5">
     <h3>Resultat :</h3>

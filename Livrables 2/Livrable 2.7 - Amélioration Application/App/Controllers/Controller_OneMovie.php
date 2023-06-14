@@ -20,20 +20,14 @@ class Controller_OneMovie extends Controller
             if ($dataApi["Plot"] == "N/A") {
                 $dataApi["Plot"] = "No description found";
             }
+            $item["Plot"] = $dataApi["Plot"];
         } else {
-            $dataApi["Plot"] = "No description found";
+            $item["Plot"] = "No description found";
         }
+        
+        $algo = Algo::getAlgo('http://localhost:5000');
+        $dataApi["Poster"] = $algo->getMoviePoster($id);
 
-        // if the poster is not found, use the default poster
-        if (isset($dataApi["Poster"])) {
-            if ($dataApi["Poster"] == "N/A") {
-                $dataApi["Poster"] = "https://img.freepik.com/vecteurs-libre/oops-erreur-404-illustration-concept-robot-casse_114360-1932.jpg?w=2000";
-            }
-        } else {
-            $dataApi["Poster"] = "https://img.freepik.com/vecteurs-libre/oops-erreur-404-illustration-concept-robot-casse_114360-1932.jpg?w=2000";
-        }
-
-        // You can use array_replace here so that any other fields from $data will not be overwritten by fields from $dataApi that happen to have the same key.
         $data = array_replace($data[0], $dataApi);
 
         return $this->render("one_movie", $data);

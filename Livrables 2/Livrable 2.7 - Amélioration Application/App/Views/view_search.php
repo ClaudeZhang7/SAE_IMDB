@@ -78,7 +78,7 @@ require_once 'view_begin.php';
     }
 </style>
 
-<title>Recherche Film | Artive</title>
+<title>Recherche Film | ApnaTV</title>
 
 <div class="container-fluid p-0 m-0 px-5 d-flex flex-row align-items-start justify-content-between pb-5" style="background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%)">
     <div class="d-flex flex-column align-items-start justify-content-start" style="width: 500px;">
@@ -189,7 +189,7 @@ require_once 'view_begin.php';
                             </h2>
                             <h6 class="des" style="height: 95px; overflow: hidden;">
                                 Description : <br><br>
-                                <?php echo $val['Plot'] ?>
+                                <?php echo substr($val['Plot'], 0, 50) . "..." ?>
                             </h6>
                             <button class="watchlist-btn" onclick="window.location.href = 'index.php?controller=OneMovie&id=<?php echo $val['tconst'] ?>'">
                                 Voir

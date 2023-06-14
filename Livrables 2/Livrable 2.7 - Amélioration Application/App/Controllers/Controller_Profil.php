@@ -3,6 +3,8 @@ class Controller_Profil extends Controller
 {
     public function action_default()
     {
-        $this->render("profil");
+        $data = $_SESSION['user'] ?? [];
+
+        $this->render("profil", $data);
     }
 }

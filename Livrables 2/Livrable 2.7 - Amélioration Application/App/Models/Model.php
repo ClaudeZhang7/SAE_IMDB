@@ -42,17 +42,26 @@ class Model
     // get 10 last movies the data from the table title_basics
     public function getLastMovies()
     {
-        $sql = "SELECT * FROM title_basics ORDER BY tconst limit 10";
+        $sql = "SELECT * FROM title_basics WHERE startyear >= 2019 AND 'Adventure' = ANY(genres)
+        ORDER BY tconst LIMIT 10";
         $req = $this->bd->prepare($sql);
         $req->execute();
 
-        return $req->fetchAll(PDO::FETCH_ASSOC);
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+
+        $sql = "SELECT * FROM title_basics Where tconst = 'tt2488496'";
+        $req = $this->bd->prepare($sql);
+        $req->execute();
+
+        $data[0] = $req->fetch(PDO::FETCH_ASSOC);
+
+        return $data;
     }
 
     // get all movies the data from the table title_basics
     public function getAllMovies()
     {
-        $sql = "SELECT * FROM title_basics ORDER BY tconst limit 100";
+        $sql = "SELECT * FROM title_basics WHERE startyear >= 2019 ORDER BY tconst limit 100";
         $req = $this->bd->prepare($sql);
         $req->execute();
 
@@ -113,44 +122,31 @@ class Model
             return $directors;
         }, $data[0]["directors"]);
 
+        // get the movie ratings
+        $sql = "SELECT note FROM note WHERE tconst = :id";
+        $req = $this->bd->prepare($sql);
+        $req->execute(array(
+            "id" => $id
+        ));
+
+        $note = $req->fetch(PDO::FETCH_ASSOC);
+        if ($note) {
+            $data[0]["note"] = $note["note"];
+        } else {
+            $data[0]["note"] = null;
+        }
+
         return $data;
     }
 
+
     public function getSearchFilm($name = "", $date = "", $genre = "", $sort = "")
     {
-
-        if (empty($name) && empty($date) && empty($genre) && empty($sort)) {
-            $sql = "SELECT * FROM title_basics ORDER BY tconst limit 30";
-            $req = $this->bd->prepare($sql);
-            $req->execute();
-
-            return $req->fetchAll(PDO::FETCH_ASSOC);
-        }
-
-        if (empty($name)) {
-            $name = "";
-        }
-
-        if (empty($date)) {
-            $date = 0;
-        }
-
-        if (empty($genre)) {
-            $genre = "";
-        }
-
-        if (empty($sort)) {
-            $sort = "";
-        } elseif ($sort === "date") {
-            $sort = "startyear";
-        } elseif ($sort === "alpha") {
-            $sort = "primarytitle";
-        }
-
-        $sql = "SELECT * FROM title_basics where 1=1";
+        $sql = "SELECT * FROM title_basics WHERE 1=1";
         $params = array();
+
         if (!empty($name)) {
-            $sql .= " AND primarytitle LIKE :name OR originaltitle LIKE :name";
+            $sql .= " AND (primarytitle ILIKE :name OR originaltitle ILIKE :name)";
             $params['name'] = "%$name%";
         }
         if (!empty($date)) {
@@ -162,53 +158,50 @@ class Model
             $params['genre'] = $genre;
         }
         if (!empty($sort)) {
-            $sql .= " ORDER BY $sort";
+            if ($sort === "date") {
+                $sql .= " ORDER BY startyear ASC";
+            } elseif ($sort === "alpha") {
+                $sql .= " ORDER BY primarytitle ASC";
+            }
         }
-        $sql .= " limit 30";
+        $sql .= " LIMIT 30";
 
-        $req = $this->bd->prepare($sql);
-        $req->execute($params);
+        try {
+            $req = $this->bd->prepare($sql);
+            $req->execute($params);
+        } catch (PDOException $e) {
+            // Handle error
+        }
 
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getSearchActor($name = "", $sort = "")
     {
-        if (empty($name) && empty($sort)) {
-            $sql = "SELECT * FROM name_basics ORDER BY nconst limit 30";
-            $req = $this->bd->prepare($sql);
-            $req->execute();
-            return $req->fetchAll(PDO::FETCH_ASSOC);
-        }
-
-        if (empty($name)) {
-            $name = "";
-        }
-
-        if (empty($sort)) {
-            $sort = "";
-        } elseif ($sort === "alpha") {
-            $sort = "primaryname";
-        }
-
-        $sql = "SELECT * FROM name_basics where 1=1";
+        $sql = "SELECT * FROM name_basics WHERE 1=1";
         $params = array();
 
         if (!empty($name)) {
-            $sql .= " AND primaryname LIKE :name";
+            $sql .= " AND primaryname ILIKE :name";
             $params['name'] = "%$name%";
         }
-
         if (!empty($sort)) {
-            $sql .= " ORDER BY $sort";
+            if ($sort === "alpha") {
+                $sql .= " ORDER BY primaryname ASC";
+            }
+        }
+        $sql .= " LIMIT 30";
+
+        try {
+            $req = $this->bd->prepare($sql);
+            $req->execute($params);
+        } catch (PDOException $e) {
+            // Handle error
         }
 
-        $sql .= " limit 30";
-
-        $req = $this->bd->prepare($sql);
-        $req->execute($params);
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
     // get all genres plucked from the table title_basics
     public function getGenres()
@@ -277,7 +270,7 @@ class Model
 
     public function getCommonBetween2Actors($name1, $name2)
     {
-        
+
         $sql = "SELECT DISTINCT primarytitle, primaryname FROM VUE_FOR_RECHERCHE WHERE primaryname LIKE :name1";
 
         $params = array(':name1' => $name1);
@@ -334,15 +327,22 @@ class Model
         return $data;
     }
 
-    public function createUser($nom, $prenom, $mail, $mdp){
-        if (empty($nom) || empty($prenom) || empty($mail) || empty($mdp)){
+    public function createUser($nom, $prenom, $mail, $mdp)
+    {
+        if (empty($nom) || empty($prenom) || empty($mail) || empty($mdp)) {
             throw new Exception("Un des champs est vide");
+        }
+
+        $exist_user = $this->getUser($mail, $mdp);
+
+        if (!empty($exist_user)) {
+            throw new Exception("L'utilisateur existe déjà");
         }
 
         $sql = "INSERT INTO utilisateur (nom, prenom, mail, mdp) VALUES (:nom, :prenom, :mail, :mdp)";
         $req = $this->bd->prepare($sql);
 
-        try{
+        try {
             $user = $req->execute(array(
                 "prenom" => $prenom,
                 "nom" => $nom,
@@ -350,7 +350,7 @@ class Model
                 "mdp" => $mdp
             ));
 
-            if (!$user){
+            if (!$user) {
                 throw new Exception("Erreur lors de la création de l'utilisateur");
             }
 
@@ -361,26 +361,27 @@ class Model
                 "mail" => $mail,
                 "mdp" => $mdp
             ];
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             throw new Exception("Erreur lors de la création de l'utilisateur");
         }
     }
 
-    public function getUser($mail, $mdp){
-        if (empty($mail) || empty($mdp)){
+    public function getUser($mail, $mdp)
+    {
+        if (empty($mail) || empty($mdp)) {
             throw new Exception("Un des champs est vide");
         }
 
         $sql = "SELECT * FROM utilisateur WHERE mail = :mail AND mdp = :mdp";
         $req = $this->bd->prepare($sql);
 
-        try{
-           $user =  $req->execute(array(
+        try {
+            $user =  $req->execute(array(
                 "mail" => $mail,
                 "mdp" => $mdp
             ));
 
-            if (!$user){
+            if (!$user) {
                 throw new Exception("Erreur lors de la récupération de l'utilisateur");
             } else {
                 return [
@@ -391,23 +392,55 @@ class Model
                     "mdp" => $mdp
                 ];
             }
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             throw new Exception("Erreur lors de la récupération de l'utilisateur");
         }
 
         return $req->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function delete ($id){
+    public function delete($id)
+    {
         $sql = "DELETE FROM utilisateur WHERE id = :id";
         $req = $this->bd->prepare($sql);
 
-        try{
+        try {
             $req->execute(array(
                 "id" => $id
             ));
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             throw new Exception("Erreur lors de la suppression de l'utilisateur");
+        }
+    }
+
+    public function addNoteToMovie(int $note, string $tconst)
+    {
+        $sql = "Select * from note where tconst = :tconst";
+        $req = $this->bd->prepare($sql);
+        $req->execute(array(
+            "tconst" => $tconst
+        ));
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+
+        if (empty($data)) {
+            $sql = "INSERT INTO note (tconst, note, nombre_votant) VALUES (:tconst, :note, 1)";
+            $req = $this->bd->prepare($sql);
+            $req->execute(array(
+                "tconst" => $tconst,
+                "note" => $note
+            ));
+        } else {
+            $note = ($data["note"] * $data["nombre_votant"] + $note) / ($data["nombre_votant"] + 1);
+            $nombre_votant = $data["nombre_votant"] + 1;
+
+            $sql = "UPDATE note SET note = :note, nombre_votant = :nombre_votant WHERE tconst = :tconst";
+            $req = $this->bd->prepare($sql);
+            $req->execute(array(
+                "tconst" => $tconst,
+                "note" => $note,
+                "nombre_votant" => $nombre_votant
+            ));
         }
     }
 }
