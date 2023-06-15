@@ -8,7 +8,7 @@ $genre = explode(",", $genre);
 
 <title><?php echo $first['primarytitle'] ?> | ApnaTV</title>
 
-<div class="container-fluid‡ p-0 m-0 py-3" style="
+<div class="container-fluid p-0 m-0 py-3" style="
     <?php
     echo "background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%), url(
     " . $first['Poster'] . "
@@ -19,13 +19,13 @@ $genre = explode(",", $genre);
         <div class="row mx-5" style="margin-top: 150px;">
             <div class="text-white">
                 <h1 class="display-3 text-uppercase fw-bold" id="titre">
-                    <?php echo $first['primarytitle']; ?>
+                    <?php echo $first['primarytitle'] ?? "<span class='fw-bold'>Aucun titre renseigné</span>"; ?>
                 </h1>
 
                 <div class="my-5">
                     <h5 class="text-uppercase fw-bold mt-3">Description du film :</h5>
                     <p class="fw-bold" style="width: 50%;">
-                        <?php echo $first["Plot"]; ?>
+                        <?php echo $first["Plot"] ?? "<span class='fw-bold'>Aucune description renseignée</span>"; ?>
                     </p>
                 </div>
 

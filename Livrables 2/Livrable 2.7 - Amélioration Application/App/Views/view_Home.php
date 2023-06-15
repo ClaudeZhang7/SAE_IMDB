@@ -36,32 +36,67 @@ $genre = explode(",", $genre);
 
 <style>
     @media only screen and (max-width: 600px) {
+
         /* styles pour les écrans de moins de 600px (téléphones) */
         .description-width {
             width: 100%;
         }
+
         #titre {
-            font-size: 1.5em; /* adjust as needed */
+            font-size: 1.5em;
+            /* adjust as needed */
         }
     }
 
     @media only screen and (min-width: 600px) and (max-width: 1200px) {
+
         /* styles pour les écrans entre 600px et 1200px (tablettes) */
         .description-width {
             width: 75%;
         }
+
         #titre {
-            font-size: 2em; /* adjust as needed */
+            font-size: 2em;
+            /* adjust as needed */
         }
     }
 
     @media only screen and (min-width: 1200px) {
+
         /* styles pour les écrans de plus de 1200px (ordinateurs de bureau, télévisions) */
         .description-width {
             width: 50%;
         }
+
         #titre {
-            font-size: 2.5em; /* adjust as needed */
+            font-size: 2.5em;
+            /* adjust as needed */
+        }
+    }
+
+    @media screen and (max-width: 1000px) {
+        .carrousel-movie {
+            display: none;
+        }
+
+        .height-list {
+            height: 100%;
+        }
+
+        .list-movie {
+        }
+    }
+
+    @media screen and (min-width: 1000px) {
+        .carrousel-movie {
+        }
+
+        .height-list {
+            height: 360px;
+        }
+
+        .list-movie {
+            display: none;
         }
     }
 </style>
@@ -106,14 +141,26 @@ $genre = explode(",", $genre);
             <div class="text-white">
                 <h5 class="text-uppercase fw-bold mt-3" id="description">Les Derniers Films :</h5>
 
-                <div style="background: radial-gradient(circle, rgba(207,207,207,0.2) 0%, rgba(241,241,241,0.2) 100%); width: 100%; height: 300px; border-radius: 20px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.5); -webkit-backdrop-filter: blur(10px);
+                <div class="height-list" style="background: radial-gradient(circle, rgba(207,207,207,0.2) 0%, rgba(241,241,241,0.2) 100%); width: 100%; border-radius: 20px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.5); -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);">
-                    <div class="d-flex align-items-center justify-content-center" style="width: 100%; height: 100%;">
-                        <?php
-                        require_once 'Content/Components/Carrousel.php';
-                        $dataFilm = $data
-                        ?>
-                    </div>
+
+                    <span class="carrousel-movie">
+                        <div class="d-flex align-items-center justify-content-center" style="width: 100%; height: 100%;">
+                            <?php
+                            require_once 'Content/Components/Carrousel.php';
+                            $dataFilm = $data
+                            ?>
+                        </div>
+                    </span>
+
+                    <span class="list-movie">
+                        <div class="d-flex align-items-center justify-content-center" style="width: 100%; height: 100%;">
+                            <?php
+                            require_once 'Content/Components/ListMovie.php';
+                            $dataFilm = $data
+                            ?>
+                        </div>
+                    </span>
                 </div>
             </div>
         </div>

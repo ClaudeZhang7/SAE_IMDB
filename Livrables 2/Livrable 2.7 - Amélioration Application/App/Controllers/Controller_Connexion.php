@@ -50,18 +50,22 @@ class Controller_Connexion extends Controller
         $email = $_POST['email'];
         $motdepasse = $_POST['motdepasse'];
 
-        if ($email == "samueldorismond@gmail.com" && $motdepasse == "test") {
-            $_SESSION['user'] = [
-                'nom' => "Dorismond",
-                'prenom' => "Samuel",
-                'email' => $email,
-                'motdepasse' => $motdepasse
-            ];
-            header('Location: /');
-            
-        } else {
+        $model = Model::getModel();
+        $user = $model->getUser($email, $motdepasse);
+
+        if ($user == null || $user == false) {
             $this->action_error("L'email ou le mot de passe est incorrect");
         }
+
+        $_SESSION['user'] = [
+            'nom' => $user['nom'],
+            'prenom' => $user['prenom'],
+            'email' => $user['email'],
+            'motdepasse' => $user['motdepasse']
+        ];
+
+        header('Location: /');
+        
     }
 
     public function action_signOut()

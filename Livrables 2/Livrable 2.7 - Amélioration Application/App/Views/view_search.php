@@ -78,10 +78,26 @@ require_once 'view_begin.php';
     }
 </style>
 
+<style>
+    @media screen and (max-width: 768px) {
+
+        .search-column,
+        .results-column {
+            width: 100% !important;
+            min-width: auto !important;
+        }
+
+        .card {
+            width: 100%;
+            height: auto;
+        }
+    }
+</style>
+
 <title>Recherche Film | ApnaTV</title>
 
 <div class="container-fluid p-0 m-0 px-5 d-flex flex-row align-items-start justify-content-between pb-5" style="background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%)">
-    <div class="d-flex flex-column align-items-start justify-content-start" style="width: 500px;">
+    <div class="search-column d-flex flex-column align-items-start justify-content-start" style="width: 500px; min-width: 500px;">
         <div class="px-3" style="margin-top: 150px; width: 100%;">
             <h5 class="text-white">Recherchez votre Film / Serie</h5>
             <br>
@@ -173,7 +189,7 @@ require_once 'view_begin.php';
     </div>
 
 
-    <div class="d-flex flex-column align-items-start justify-content-start" style="margin-top: 150px; width: 100%; height: 100%; border-radius: 10px; min-width: 500px">
+    <div class="results-column d-flex flex-column align-items-start justify-content-start" style="margin-top: 150px; width: 100%; height: 100%; border-radius: 10px; min-width: 500px">
         <h3 class="text-white ps-5">Resultats de votre recherche :</h3>
 
         <div class="d-flex flex-row flex-wrap justify-content-center align-items-center mt-2">
@@ -198,18 +214,18 @@ require_once 'view_begin.php';
                     </div>
                 <?php elseif (isset($val["nconst"])) : ?>
                     <div class="card m-3">
-                    <img src=<?php
-                                echo $val['Poster']
-                                ?> class="card-img" alt="">
-                    <div class="card-body">
-                        <h2 class="name">
-                            <?php echo $val['primaryname'] ?>
-                        </h2>
-                        <button class="btn disabled" style="background-color: #1e1e1e; color: white; border: 1px solid white;">
-                            Voir (bientôt)
-                        </button>
+                        <img src=<?php
+                                    echo $val['Poster']
+                                    ?> class="card-img" alt="">
+                        <div class="card-body">
+                            <h2 class="name">
+                                <?php echo $val['primaryname'] ?>
+                            </h2>
+                            <button class="btn disabled" style="background-color: #1e1e1e; color: white; border: 1px solid white;">
+                                Voir (bientôt)
+                            </button>
+                        </div>
                     </div>
-                </div>
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>

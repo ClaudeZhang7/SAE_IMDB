@@ -108,6 +108,11 @@ class Model
         // get the directors names from the table name_basics with the nconst
         $data[0]["directors"] = array_map(function ($item) {
             $directors = $item["directors"];
+
+            if ($directors === null) {
+                return [];
+            }
+
             $directors = explode(",", str_replace(["{", "}"], "", $directors));
 
             $directors = array_map(function ($item) {
@@ -343,26 +348,24 @@ class Model
         $req = $this->bd->prepare($sql);
 
         try {
-            $user = $req->execute(array(
+            $req->execute(array(
                 "prenom" => $prenom,
                 "nom" => $nom,
                 "mail" => $mail,
                 "mdp" => $mdp
             ));
 
-            if (!$user) {
-                throw new Exception("Erreur lors de la création de l'utilisateur");
-            }
+            $user = $this->getUser($mail, $mdp);
 
             return [
-                "id" => $this->bd->lastInsertId(),
-                "prenom" => $prenom,
-                "nom" => $nom,
-                "mail" => $mail,
-                "mdp" => $mdp
+                "prenom" => $user["prenom"],
+                "nom" => $user["nom"],
+                "mail" => $user["mail"],
+                "mdp" => $user["mdp"]
             ];
+
         } catch (PDOException $e) {
-            throw new Exception("Erreur lors de la création de l'utilisateur");
+            throw new Exception($e->getMessage());
         }
     }
 
@@ -376,32 +379,32 @@ class Model
         $req = $this->bd->prepare($sql);
 
         try {
-            $user =  $req->execute(array(
+            $req->execute(array(
                 "mail" => $mail,
                 "mdp" => $mdp
             ));
 
+            $user = $req->fetch(PDO::FETCH_ASSOC);
+
             if (!$user) {
-                throw new Exception("Erreur lors de la récupération de l'utilisateur");
+                return false;
             } else {
                 return [
-                    "id" => $this->bd->lastInsertId(),
                     "prenom" => $user["prenom"],
                     "nom" => $user["nom"],
-                    "mail" => $mail,
-                    "mdp" => $mdp
+                    "mail" => $user["mail"],
+                    "mdp" => $user["mdp"]
                 ];
             }
         } catch (PDOException $e) {
-            throw new Exception("Erreur lors de la récupération de l'utilisateur");
+            throw new Exception("Erreur lors de la récupération de l'utilisateur : " . $e->getMessage());
         }
-
-        return $req->fetch(PDO::FETCH_ASSOC);
     }
+
 
     public function delete($id)
     {
-        $sql = "DELETE FROM utilisateur WHERE id = :id";
+        $sql = "DELETE FROM utilisateur WHERE id_utilisateur = :id";
         $req = $this->bd->prepare($sql);
 
         try {

@@ -98,6 +98,7 @@
         overflow: hidden;
         margin-right: 20px;
         transition: .5s;
+        z-index: 100;
     }
 
     .card-img {
